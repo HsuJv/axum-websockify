@@ -35,5 +35,6 @@ ARGS:
 
 ```bash
 $ vncserver
+$ tar xf noVnc.tar
 $ ./target/release/axum-websockify --web $PWD/noVnc 0.0.0.0:8080 127.0.0.1:5900
 ```
