@@ -1,0 +1,35 @@
+[package]
+name = "axum-websockify"
+version = "0.1.0"
+edition = "2021"
+authors = [
+    "Jovi Hsu <jv.hsu@outlook.com>"
+]
+categories = ["web-programming"]
+description = "A simple websockify implement using axum"
+license = "LGPL-3.0"
+readme = "README.md"
+repository = "https://www.github.com/HsuJv/axum-websockify"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = { version = "0.5", features = ["ws", "headers"] }
+axum-server = { version = "0.3", features = ["tls-rustls"] }
+headers = "0.3"
+tokio = { version = "1.0", features = ["full"] }
+tower = { version = "0.4", features = ["limit"] }
+tower-http = { version = "0.3.0", features = ["fs", "trace"] }
+
+clap = "2"
+anyhow = "1"
+paste = "1"
+log = "0.4"
+pretty_env_logger = "0.4"
+
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
