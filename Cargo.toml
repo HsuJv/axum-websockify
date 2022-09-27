@@ -7,7 +7,7 @@ authors = [
 ]
 categories = ["web-programming"]
 description = "A simple websockify implement using axum"
-license = "LGPL-3.0"
+license = "BSD 3-Clause"
 readme = "README.md"
 repository = "https://www.github.com/HsuJv/axum-websockify"
 
