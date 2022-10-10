@@ -35,14 +35,22 @@ pub async fn handle_client(mut client: WebSocket) {
                 }
             },
             res  = server_stream.read(&mut buf) => {
-                let n = res.unwrap();
-                info!("Recv {}", n);
-                if 0 != n {
-                    debug!("Recv {}", n);
-                    let _ = client.send(Message::Binary(buf[..n].to_vec())).await;
-                } else {
-                    return ;
+                match res {
+                    Ok(n) => {
+                        info!("Recv {}", n);
+                        if 0 != n {
+                            debug!("Recv {}", n);
+                            let _ = client.send(Message::Binary(buf[..n].to_vec())).await;
+                        } else {
+                            return ;
+                        }
+                    },
+                    Err(e) => {
+                        info!("Server close with err {:?}", e);
+                        return;
+                    }
                 }
+
             },
         }
     }
