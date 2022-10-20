@@ -123,9 +123,9 @@ pub async fn handle_client(mut client: WebSocket) {
             .await
             .unwrap();
         let peer_cert = stream.get_ref().1.peer_certificates().unwrap();
-        let peer_cert = x509_parser::parse_x509_certificate(peer_cert[0].as_ref()).unwrap();
-        let peer_pub_key = peer_cert.1.public_key().raw;
-        let _ = client.send(Message::Binary(peer_pub_key.to_vec())).await;
+        let _ = client
+            .send(Message::Binary(peer_cert[0].as_ref().to_vec()))
+            .await;
 
         let (mut reader, mut writer) = tokio::io::split(stream);
         loop {
