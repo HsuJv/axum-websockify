@@ -21,7 +21,7 @@ fn app_setup() -> App<'static, 'static> {
     )
 }
 
-#[tokio::main(worker_threads = 3)]
+#[tokio::main]
 async fn main() -> Result<()> {
     let app = app_setup();
     let matches = app.get_matches();
